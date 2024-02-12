@@ -1,3 +1,4 @@
+//controllers/quiz.js
 const express = require('express')
 const axios = require('axios');
 const {Quiz} = require ('../models');
