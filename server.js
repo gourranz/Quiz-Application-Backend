@@ -10,7 +10,7 @@ const app = express();
 const cors = require("cors")
 const morgan = require("morgan")
 
-
+const AuthRouter = require('./routes/AuthRouter')
 const quizRouter = require('./routes/quiz')
 
 app.use(express.urlencoded({extended: true}))
@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(cors()); 
 app.use(morgan("dev"));
 
-
+app.use('/auth', AuthRouter)
 app.use('/quiz', quizRouter)
 
 
