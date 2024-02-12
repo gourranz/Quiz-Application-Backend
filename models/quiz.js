@@ -10,4 +10,4 @@ const QuizSchema = new Schema({
   incorrect_answers: [String],
 }, { timestamps: true });
 
-module.exports = mongoose.model("Quiz", QuizSchema);
+module.exports = QuizSchema;
