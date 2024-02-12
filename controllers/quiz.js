@@ -7,17 +7,17 @@ const models = require('../models');
 async function index(req, res, next) {
 
 try {
-    const quizType = req.query.type || 'animals'; 
+    const quizType = req.params.type; 
 
     const quizTypeUrls = {
         geography: 'https://opentdb.com/api.php?amount=10&category=22&difficulty=medium&type=multiple',
-        history: 'https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=boolean',
-        art:'https://opentdb.com/api.php?amount=10&category=25&difficulty=medium&type=multiple',
-        politics:'https://opentdb.com/api.php?amount=10&category=24&type=boolean',
-        sports:'https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=boolean',
+        history: 'https://opentdb.com/api.php?amount=10&category=23&difficulty=medium&type=multiple',
+        art:'https://opentdb.com/api.php?amount=10&category=25&difficulty=easy&type=multiple',
+        politics:'https://opentdb.com/api.php?amount=10&category=24&difficulty=medium&type=multiple',
+        sports:'https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple',
         animals:'https://opentdb.com/api.php?amount=10&category=27&type=multiple',
-        scienceNature:'https://opentdb.com/api.php?amount=10&category=17&type=multiple',
-        computerScience:'https://opentdb.com/api.php?amount=10&category=18&type=multiple'
+        scienceNature:'https://opentdb.com/api.php?amount=10&category=17&difficulty=medium&type=multiple',
+        computerscience:'https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple'
 
     };
 
@@ -27,6 +27,7 @@ try {
     }
 
     const response = await axios.get(apiUrl);
+    console.log(response.data)
     const externalQuizQuestions = response.data.results;
     await Quiz.insertMany(externalQuizQuestions);
 
